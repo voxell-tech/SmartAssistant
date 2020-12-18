@@ -9,7 +9,7 @@ public class VoiceRecon : MonoBehaviour
 {
   private KeywordRecognizer keywordRecognizer;
   [SerializeField]
-  private string[]keywords;
+  private string[] keywords;
   private Dictionary<string,Action> keywordDict; //format of dictionary
   
   void Start()
