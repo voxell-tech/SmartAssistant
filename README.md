@@ -6,7 +6,12 @@ This is a basic overview of the Smart Assistant project:
 ![Plan](./Pictures/Plan.png)
 # Smart Assistant
 
-This is a fully functional smart assistant that is able to control your house and automate them. There are lots of features included in it.
+This project aims to create a fully functional smart assistant that is able to control your house and automate them. There are lots of features included in it.
+You can look at our plan at Milanote:
+
+![Milanote](https://app.milanote.com/1KPrwu1FVZ7S2G?p=UGrY3QR3ztP)
+
+You can check out our [documentaion](https://docs.google.com/document/d/1VVpCAUW7GcWCcOrWAtEkXxx1AH59J9e59fqEaYfNGSw/edit?usp=sharing).
 
 **Planned advance features:**
 - Chat with you via AI Chatbot ***(currently on going)***
@@ -40,7 +45,7 @@ This project uses Unity (specifically the Universal Render Pipeline) as the GUI 
 ## Build Settings
 
 - **Python**: Python 3.7.6
-- **Unity URP**: 2020.1 (.14f1) *you can use any 2020 version but keep in mind that you will be changing the source code and out of sync from this repository*
+- **Unity URP**: 2020.2 (.0f1) *you can use any 2020.2 version but keep in mind that you will be changing the source code and out of sync from this repository*
 - **Tensorflow**: v2.3.1
 
 ## Credits
