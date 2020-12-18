@@ -14,6 +14,7 @@ public class AudioVisualizer : MonoBehaviour
   public bool isUsingMic;
   public string micDevice;
   public Material material;
+  
   // Start is called before the first frame update
   void Start()
   {
