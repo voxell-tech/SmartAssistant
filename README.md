@@ -7,11 +7,8 @@ This is a basic overview of the Smart Assistant project:
 # Smart Assistant
 
 This project aims to create a fully functional smart assistant that is able to control your house and automate them. There are lots of features included in it.
-You can look at our plan at Milanote:
+You can look at our plan at [Milanote](https://app.milanote.com/1KPrwu1FVZ7S2G?p=UGrY3QR3ztP) and our [documentation](https://docs.google.com/document/d/1VVpCAUW7GcWCcOrWAtEkXxx1AH59J9e59fqEaYfNGSw/edit?usp=sharing).
 
-![Milanote](https://app.milanote.com/1KPrwu1FVZ7S2G?p=UGrY3QR3ztP)
-
-You can check out our [documentaion](https://docs.google.com/document/d/1VVpCAUW7GcWCcOrWAtEkXxx1AH59J9e59fqEaYfNGSw/edit?usp=sharing).
 
 **Planned advance features:**
 - Chat with you via AI Chatbot ***(currently on going)***
