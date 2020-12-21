@@ -5,57 +5,105 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioVisualizer : MonoBehaviour
 {
+  #region Audio Settings
   public AudioSource audioSource;
   public AudioClip audioClip;
-  public static float[] audioSpectrum;
   public FFTWindow fft;
-  public uint sampleNum = 512;
-  public float amplitudeMultiplier = 10f;
-  public bool isUsingMic;
-  public string micDevice;
-  public Material material;
+
+  public const int audioHertz = 44100;
+  public const int sampleSize = 1024;
+  public static float[] spectrumLeft;
+  public static float[] spectrumRight;
+
+  public const int bandSize = 8;
+  public static float[] bandLeft;
+  public static float[] bandRight;
+  #endregion
+
+  #region Mic Settings
+  public static string micDevice;
+  #endregion
+
+  #region Audio Visualizer
+  public float bandLength = 5.0f;
+  public Vector3[] bandDirections = new Vector3[bandSize];
+  #endregion
+
+  #region Gizmos
+  public Gradient bandDirGrad;
+  #endregion
+
+  #region Editor Stuffs
+  [SerializeField]
+  public bool showAudioSettings,
+  showMicSettings,
+  showAudioVisualizer,
+  showGizmos;
+  #endregion
   
-  // Start is called before the first frame update
   void Start()
   {
-    if(isUsingMic)
-    {
-      if(Microphone.devices.Length > 0)
-      {
-        //select individual microphone device
-        micDevice = Microphone.devices[0].ToString();
-        audioSource.clip = Microphone.Start(micDevice, true, 10, AudioSettings.outputSampleRate);
-      }
-    }
+    spectrumLeft = new float[sampleSize];
+    spectrumRight = new float[sampleSize];
+    bandLeft = new float[bandSize];
+    bandRight = new float[bandSize];
 
-    //song played when not using mic
-    if(!isUsingMic) 
-    {
-      audioClip = audioSource.clip;
-    }
+    micDevice = Microphone.devices[0].ToString();
+
 
     audioSource.Play();
-    // audioSource = GetComponent<AudioSource>();
-    // print(audioClip.frequency);
   }
 
-  // Update is called once per frame
   void Update()
   {
-    // float[] audioSpectrum = new float[1024];
-    // float[] audioOutput = new float[1024];
+    audioSource.GetSpectrumData(spectrumLeft, 0, fft);
+    audioSource.GetSpectrumData(spectrumLeft, 1, fft);
 
-    audioSpectrum = new float[sampleNum];
-    audioSource.GetSpectrumData(audioSpectrum, 0, fft);
+    CreateFreqBand(ref bandLeft, ref spectrumLeft);
+    CreateFreqBand(ref bandRight, ref spectrumRight);
+  }
 
+  void CreateFreqBand(ref float[] band, ref float[] spectrum)
+  {
+    int count = 0;
 
-    for (int i = 1; i < audioSpectrum.Length - 1; i++)
+    for (int i=0; i < bandSize; i++)
     {
-      Debug.DrawLine(new Vector3((i - 1)*0.01f + 1, audioSpectrum[i] * amplitudeMultiplier + 10), new Vector3(i *0.01f + 1, audioSpectrum[i + 1] * amplitudeMultiplier + 10), Color.cyan);
-      // Debug.DrawLine(new Vector3(i - 1, audioSpectrum[i] * 20 + 10, 0), new Vector3(i, audioSpectrum[i + 1] * 20 + 10, 0), Color.red);
-      // Debug.DrawLine(new Vector3(i - 1, Mathf.Log(audioSpectrum[i - 1]) + 10, 2), new Vector3(i, Mathf.Log(audioSpectrum[i]) + 10, 2), Color.cyan);
-      // Debug.DrawLine(new Vector3(Mathf.Log(i - 1), audioSpectrum[i - 1] - 10, 1), new Vector3(Mathf.Log(i), audioSpectrum[i] - 10, 1), Color.green);
-      // Debug.DrawLine(new Vector3(Mathf.Log(i - 1), Mathf.Log(audioSpectrum[i - 1]), 3), new Vector3(Mathf.Log(i), Mathf.Log(audioSpectrum[i]), 3), Color.blue);
+      int sampleCount = (int) Mathf.Pow(2, i) * 2;
+      if (i == 7) sampleCount += 2;
+
+      float average = 0;
+      for (int s=0; s < sampleCount; s++)
+      {
+        average += spectrum[count]*(count + 1);
+        count ++;
+      }
+
+      average /= count;
+      band[i] = average * 10;
+    }
+  }
+
+  void OnDrawGizmos()
+  {
+    for (int b=0; b < bandSize; b++)
+    {
+      Gizmos.color = bandDirGrad.Evaluate(b/(float) bandSize);
+      Gizmos.DrawLine(transform.position, transform.position + bandDirections[b]*bandLength);
+      Gizmos.DrawSphere(transform.position + bandDirections[b]*bandLength, 0.01f);
+    }
+
+    for (int b=0; b < bandSize; b++)
+    {
+      Gizmos.color = bandDirGrad.Evaluate(b/(float) bandSize);
+      Gizmos.DrawLine(transform.position, transform.position + new Vector3(
+        -bandDirections[b].x*bandLength,
+        bandDirections[b].y*bandLength,
+        bandDirections[b].z*bandLength));
+      Gizmos.DrawSphere(transform.position + new Vector3(
+        -bandDirections[b].x*bandLength,
+        bandDirections[b].y*bandLength,
+        bandDirections[b].z*bandLength), 0.01f);
     }
   }
 }
