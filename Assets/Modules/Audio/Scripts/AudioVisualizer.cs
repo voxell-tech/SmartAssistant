@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.VFX;
 
-[RequireComponent(typeof(AudioSource))]
-public class AudioVisualizer : MonoBehaviour
+public partial class Agent : MonoBehaviour
 {
   #region Audio Settings
+  public VisualEffect audioVFX;
+  private const float epsilon = 0.001f;
   public AudioSource audioSource;
   public AudioClip audioClip;
   public FFTWindow fft;
@@ -27,21 +27,16 @@ public class AudioVisualizer : MonoBehaviour
   #region Audio Visualizer
   public float bandLength = 5.0f;
   public Vector3[] bandDirections = new Vector3[bandSize];
-  #endregion
-
-  #region Gizmos
   public Gradient bandDirGrad;
   #endregion
 
   #region Editor Stuffs
-  [SerializeField]
   public bool showAudioSettings,
   showMicSettings,
-  showAudioVisualizer,
-  showGizmos;
+  showAudioVisualizer;
   #endregion
   
-  void Start()
+  void InitAudioVisualizer()
   {
     spectrumLeft = new float[sampleSize];
     spectrumRight = new float[sampleSize];
@@ -54,10 +49,10 @@ public class AudioVisualizer : MonoBehaviour
     audioSource.Play();
   }
 
-  void Update()
+  void UpdateAudioVisualizer()
   {
     audioSource.GetSpectrumData(spectrumLeft, 0, fft);
-    audioSource.GetSpectrumData(spectrumLeft, 1, fft);
+    audioSource.GetSpectrumData(spectrumRight, 1, fft);
 
     CreateFreqBand(ref bandLeft, ref spectrumLeft);
     CreateFreqBand(ref bandRight, ref spectrumRight);

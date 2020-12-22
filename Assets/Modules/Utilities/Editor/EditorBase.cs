@@ -5,7 +5,7 @@ public class EditorBase : Editor
 {
   public GUIStyle centeredLabelStyle, foldoutStyle, subFoldoutStyle, notes, box;
 
-  public const int SpaceA = 30, SpaceB = 10;
+  public const int spaceA = 30, spaceB = 10;
 
   public void EnsureStyles()
   {
