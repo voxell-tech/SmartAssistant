@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEditor;
 using System.Linq;
 
@@ -18,6 +19,8 @@ public class AudioVisualizerEditor : EditorBase
     if (agent.bandDirections.Length > Agent.bandSize)
       agent.bandDirections = agent.bandDirections.Take(Agent.bandSize).ToArray();
 
+    // if (agent.audioForceField != null && agent.textureDim == TextureDimension.None) agent.textureDim = agent.audioForceField.dimension;
+
     GUILayout.Space(spaceB);  
     #endregion
 
@@ -26,6 +29,8 @@ public class AudioVisualizerEditor : EditorBase
     {
       GUILayout.BeginVertical(box);
       EditorGUILayout.PropertyField(serializedObject.FindProperty("audioVFX"), new GUIContent("Audio VFX Graph"));
+      EditorGUILayout.PropertyField(serializedObject.FindProperty("audioSource"), new GUIContent("Audio Source"));
+      EditorGUILayout.PropertyField(serializedObject.FindProperty("fft"), new GUIContent("FFT Window"));
       GUI.enabled = false;
       EditorGUILayout.IntField("Audio Hertz", Agent.audioHertz);
       EditorGUILayout.IntField("Sample Size", Agent.sampleSize);
@@ -53,6 +58,11 @@ public class AudioVisualizerEditor : EditorBase
       EditorGUILayout.PropertyField(serializedObject.FindProperty("bandLength"), new GUIContent("Band Length"));
       EditorGUILayout.PropertyField(serializedObject.FindProperty("bandDirections"), new GUIContent("Band Directions"));
       EditorGUILayout.PropertyField(serializedObject.FindProperty("bandDirGrad"), new GUIContent("Band Dir Gradient"));
+
+      // EditorGUILayout.PropertyField(serializedObject.FindProperty("audioForceField"), new GUIContent("Audio Force Field"));
+      // GUI.enabled = false;
+      // EditorGUILayout.PropertyField(serializedObject.FindProperty("textureDim"), new GUIContent("Force Field Dimension"));
+      // GUI.enabled = true;
       GUILayout.Space(spaceB);
       
       if (GUILayout.Button("Normalize Directions"))
@@ -74,6 +84,7 @@ public class AudioVisualizerEditor : EditorBase
         EditorGUILayout.PropertyField(serializedObject.FindProperty("rotationMultiplier"), new GUIContent("Rotation Multiplier"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("velocityDamping"), new GUIContent("Velocity Damping"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("intensityCoefficient"), new GUIContent("Intensity Coefficient"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("intervalTime"), new GUIContent("Interval Update Time"));
         GUI.enabled = false;
         EditorGUILayout.PropertyField(serializedObject.FindProperty("rotationVelocity"), new GUIContent("Rotation Velocity"));
         GUI.enabled = true;
@@ -86,8 +97,12 @@ public class AudioVisualizerEditor : EditorBase
 
     if(EditorGUI.EndChangeCheck())
     {
-      // EditorApplication.QueuePlayerLoopUpdate();
+      EditorApplication.QueuePlayerLoopUpdate();
       serializedObject.ApplyModifiedProperties();
     }
+
+    agent.drawDefaultInspect = EditorGUILayout.Foldout(agent.drawDefaultInspect, "Draw Default Inspector", true, foldoutStyle);
+    if (agent.drawDefaultInspect)
+      DrawDefaultInspector();
   }
 }

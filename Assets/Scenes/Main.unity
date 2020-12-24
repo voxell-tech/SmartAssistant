@@ -133,9 +133,9 @@ GameObject:
   m_Component:
   - component: {fileID: 275060729}
   - component: {fileID: 275060727}
-  - component: {fileID: 275060731}
   - component: {fileID: 275060728}
   - component: {fileID: 275060732}
+  - component: {fileID: 275060730}
   m_Layer: 0
   m_Name: AudioVisualizer
   m_TagString: Untagged
@@ -209,7 +209,7 @@ VisualEffect:
       - m_Value: 0.5
         m_Name: Radius
         m_Overridden: 0
-      - m_Value: 2
+      - m_Value: 3
         m_Name: ParticleLifetime
         m_Overridden: 0
       - m_Value: 0.2
@@ -220,7 +220,13 @@ VisualEffect:
     m_Vector3f:
       m_Array: []
     m_Vector4f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 0, y: 0, z: 0, w: 0}
+        m_Name: Audio5
+        m_Overridden: 0
+      - m_Value: {x: 0, y: -1, z: -6.5, w: 0}
+        m_Name: Audio1
+        m_Overridden: 0
     m_Uint:
       m_Array: []
     m_Int:
@@ -274,13 +280,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275060726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6.2}
+  m_LocalPosition: {x: 0, y: 0, z: -6.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &275060731
+--- !u!114 &275060730
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -292,29 +298,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c30dbd046abab4dad818cea82c868a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioVFX: {fileID: 275060728}
+  drawDefaultInspect: 0
   rotationMultiplier: 500
   rotationVelocity: {x: 0, y: 0}
   velocityDamping: 0.95
   intensityCoefficient: 0.1
-  mouseLocation: {x: 0, y: 0, z: 0}
-  mouseForce: 0
+  intervalTime: 0.01
   showAgentInteraction: 1
   showRotation: 1
   showMouse: 0
-  audioVFX: {fileID: 275060728}
   audioSource: {fileID: 275060732}
   audioClip: {fileID: 0}
-  fft: 4
+  fft: 0
+  bandLeft: []
   bandLength: 1
   bandDirections:
-  - {x: 0, y: -1, z: 0}
-  - {x: 0.3920082, y: -0.80394626, z: 0.4472136}
-  - {x: 0.6984303, y: -0.5587443, z: -0.44721362}
-  - {x: 0.6553468, y: 0, z: 0.7553281}
-  - {x: 0.7432942, y: 0, z: -0.66896474}
-  - {x: 0.766965, y: 0.46017903, z: -0.4472136}
-  - {x: 0.5370235, y: 0.7152663, z: 0.44721362}
-  - {x: 0, y: 1, z: 0}
+  - {x: 0.28489557, y: 0.95855856, z: 0}
+  - {x: 0.6458978, y: 0.76342386, z: 0}
+  - {x: 0.85605264, y: 0.5168886, z: 0}
+  - {x: 0.98297864, y: 0.18371992, z: 0}
+  - {x: 0.98297864, y: -0.18371992, z: 0}
+  - {x: 0.85605264, y: -0.5168887, z: 0}
+  - {x: 0.6458978, y: -0.7634239, z: 0}
+  - {x: 0.2848956, y: -0.95855856, z: 0}
+  bandPoints:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   bandDirGrad:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}
@@ -345,8 +361,8 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   showAudioSettings: 1
-  showMicSettings: 1
-  showAudioVisualizer: 1
+  showMicSettings: 0
+  showAudioVisualizer: 0
 --- !u!82 &275060732
 AudioSource:
   m_ObjectHideFlags: 0
@@ -663,9 +679,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '22<sup>th</sup> <sub>of</sub> Dec 2020
+  m_text: '24<sup>th</sup> <sub>of</sub> Dec 2020
 
-    09:34:08'
+    08:15:33'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
   m_sharedMaterial: {fileID: -5255979842493405469, guid: 9ca158c55a6bde6438e4ef7899dc7e72, type: 2}
@@ -918,6 +934,7 @@ GameObject:
   - component: {fileID: 1687258582}
   - component: {fileID: 1687258583}
   - component: {fileID: 1687258586}
+  - component: {fileID: 1687258587}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1062,6 +1079,18 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1687258587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687258581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d75140455244ad4d8b4a6f9079aefd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2138677391
 GameObject:
   m_ObjectHideFlags: 0
