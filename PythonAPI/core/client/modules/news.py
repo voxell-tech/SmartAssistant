@@ -78,7 +78,7 @@ def isValid(text):
     Arguments:
     text -- user-input, typically transcribed speech
   """
-  return bool(re.search(r'\b(news|headline)\b', text, re.IGNORECASE))
+  return bool(re.search(r'\b(top news|headline)\b', text, re.IGNORECASE))
 
 if __name__ == "__main__":
     pass
