@@ -10,3 +10,6 @@
 [submodule "Packages/smartassistant.ux"]
 	path = Packages/smartassistant.ux
 	url = https://github.com/voxell-tech/smartassistant.ux.git
+[submodule "SmartAssistantAPI"]
+	path = SmartAssistantAPI
+	url = https://github.com/voxell-tech/SmartAssistantAPI.git
