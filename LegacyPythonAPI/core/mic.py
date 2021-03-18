@@ -27,7 +27,7 @@ import numpy as np
 
 class Mic(object):
 
-  def __init__(self, Agent, CHUNK=1024, FORMAT=pyaudio.paInt16, CHANNELS=2, RATE=44100):
+  def __init__(self, Agent, CHUNK=1024, FORMAT=pyaudio.paInt16, CHANNELS=1, RATE=44100):
     self.Agent = Agent
 
     self.active_maxtime = 10
