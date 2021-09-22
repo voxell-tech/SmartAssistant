@@ -90,7 +90,7 @@
     },
     "com.unity.nuget.newtonsoft-json": {
       "version": "2.0.0",
-      "depth": 3,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -236,7 +236,8 @@
       "source": "embedded",
       "dependencies": {
         "voxell.util": "1.1.0",
-        "voxell.ai": "1.0.0"
+        "voxell.ai": "1.0.0",
+        "com.unity.nuget.newtonsoft-json": "2.0.0"
       }
     },
     "voxell.util": {
