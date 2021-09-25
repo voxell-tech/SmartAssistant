@@ -111,3 +111,9 @@ native/
 native.meta
 tensorflow.dll
 tensorflow.dll.meta
+
+# data
+Data/
+Data.meta
+StreamingAssets/
+StreamingAssets.meta

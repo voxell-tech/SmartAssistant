@@ -30,7 +30,7 @@ This project depends on several custom packages, all which located in the `Packa
 
 ## Build Settings
 
-- **Unity URP**: 2021.1.(10f1) *you can use any 2021.1 version but keep in mind that you will be changing the source code and out of sync from this repository*
+- **Unity URP**: 2021.1.(17f1) *you can use any 2021.1 version but keep in mind that you will be changing the source code and out of sync from this repository*
 
 ## Support the project!
 
