@@ -13,3 +13,6 @@
 [submodule "Packages/Smart-Inspector"]
 	path = Packages/Smart-Inspector
 	url = https://github.com/neon-age/Smart-Inspector
+[submodule "Packages/UnityRasa"]
+	path = Packages/UnityRasa
+	url = https://github.com/voxell-tech/UnityRasa.git

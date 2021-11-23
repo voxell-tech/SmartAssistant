@@ -6,13 +6,6 @@
       "source": "embedded",
       "dependencies": {}
     },
-    "com.github.asus4.tflite": {
-      "version": "https://github.com/asus4/tf-lite-unity-sample.git?path=/Packages/com.github.asus4.tflite",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "26e49bf4a45a550f84f12635a97102a3e207009e"
-    },
     "com.unity.burst": {
       "version": "1.5.5",
       "depth": 0,
@@ -134,7 +127,7 @@
     },
     "com.unity.searcher": {
       "version": "4.3.2",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -240,13 +233,25 @@
         "com.unity.nuget.newtonsoft-json": "2.0.0"
       }
     },
+    "voxell.rasa": {
+      "version": "file:UnityRasa",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "voxell.util": "1.1.0",
+        "voxell.nlp": "1.1.0",
+        "com.unity.searcher": "4.3.2"
+      }
+    },
     "voxell.util": {
       "version": "file:UnityUtil",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
         "com.unity.mathematics": "1.2.1",
-        "com.unity.collections": "0.15.0-preview.21"
+        "com.unity.collections": "0.15.0-preview.21",
+        "com.unity.jobs": "0.8.0-preview.23",
+        "com.unity.burst": "1.5.5"
       }
     },
     "com.unity.modules.ai": {
