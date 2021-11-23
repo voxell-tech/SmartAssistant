@@ -50,6 +50,6 @@ This project depends on several custom packages, all which located in the `Packa
 
 ## License
 
-Smart Assistant as a whole is licensed under the GNU Public License, Version 3. Individual files may have a different, but compatible license.
+This repository as a whole is licensed under the Apache License 2.0. Individual files may have a different, but compatible license.
 
 See [license file](./LICENSE) for details.

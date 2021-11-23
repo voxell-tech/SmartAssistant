@@ -220,7 +220,10 @@
       "source": "embedded",
       "dependencies": {
         "voxell.util": "1.1.0",
-        "com.unity.visualeffectgraph": "10.3.2"
+        "com.unity.visualeffectgraph": "10.3.2",
+        "com.unity.jobs": "0.8.0-preview.23",
+        "com.unity.collections": "0.15.0-preview.21",
+        "com.unity.burst": "1.5.5"
       }
     },
     "voxell.nlp": {
